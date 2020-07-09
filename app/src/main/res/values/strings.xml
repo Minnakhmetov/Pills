@@ -2,4 +2,7 @@
     <string name="app_name">Pills</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="alphabetical_order_filter">Alphabetical order</string>
+    <string name="not_completed_first_filter">Not completed first</string>
+    <string name="hide_not_completed_filter">Hide not completed</string>
 </resources>
