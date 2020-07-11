@@ -9,5 +9,19 @@
         android:id="@+id/pillsListFragment"
         android:name="com.example.pills.PillsListFragment"
         android:label="fragment_pills_list"
-        tools:layout="@layout/fragment_pills_list" />
+        tools:layout="@layout/fragment_pills_list" >
+        <action
+            android:id="@+id/action_pillsListFragment_to_addPillFragment"
+            app:destination="@id/addPillFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPillFragment"
+        android:name="com.example.pills.AddPillFragment"
+        android:label="fragment_add_pill"
+        tools:layout="@layout/fragment_add_pill" >
+        <action
+            android:id="@+id/action_addPillFragment_to_pillsListFragment"
+            app:destination="@id/pillsListFragment"
+            app:popUpTo="@id/pillsListFragment" />
+    </fragment>
 </navigation>
