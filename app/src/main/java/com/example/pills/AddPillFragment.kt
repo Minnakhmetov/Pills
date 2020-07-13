@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pills.databinding.FragmentAddPillBinding
-import com.example.pills.models.AddPillViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
 class AddPillFragment : Fragment() {
@@ -27,10 +26,7 @@ class AddPillFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding = FragmentAddPillBinding.inflate(inflater, container, false)
 
-        val viewModel = ViewModelProvider(
-            this,
-            AddPillViewModelFactory(requireActivity().applicationContext)
-        ).get(AddPillViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(AddPillViewModel::class.java)
 
         binding.requiredDosesPicker.apply {
             minValue = 1

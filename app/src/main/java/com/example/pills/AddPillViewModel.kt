@@ -1,20 +1,20 @@
 package com.example.pills
 
+import android.app.Application
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.pills.database.PillsDatabase
 import com.example.pills.database.getDatabase
 import com.example.pills.models.Pill
 import kotlinx.coroutines.*
 import timber.log.Timber
 
-class AddPillViewModel(context: Context) : ViewModel() {
-    private val database = getDatabase(context)
+class AddPillViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = PillsRepository(database)
+    private val repository = PillsRepository(
+        getDatabase(application),
+        (application as PillApplication).applicationScope
+    )
 
     private val _duplicateFoundEvent = MutableLiveData<Boolean>()
 

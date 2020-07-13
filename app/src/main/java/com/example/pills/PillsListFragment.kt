@@ -8,7 +8,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.pills.databinding.FragmentPillsListBinding
+import com.example.pills.databinding.PillsListItemBinding
+import com.example.pills.models.Pill
+import kotlinx.android.synthetic.main.fragment_pills_list.*
+import timber.log.Timber
 
 class PillsListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,14 +38,43 @@ class PillsListFragment : Fragment() {
             }
         })
 
-        val adapter = PillsListAdapter()
+        val adapter = PillsListAdapter(object: PillsListItemClickListener {
+            override fun onPlusClicked(binding: PillsListItemBinding, pill: Pill) {
+                viewModel.onDoseIncrease(pill)
+            }
+
+            override fun onMinusClicked(binding: PillsListItemBinding, pill: Pill) {
+                viewModel.onDoseDecrease(pill)
+            }
+
+            override fun onDeleteClicked(pill: Pill) {
+                viewModel.onPillDeletion(pill)
+            }
+        })
+
         binding.pillsList.adapter = adapter
 
-        viewModel.
+        binding.pillsList.addItemDecoration(
+            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        )
 
+        viewModel.pillsList.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
+
+        binding.displayOptions.setOnCheckedChangeListener { _, id ->
+            viewModel.pillsList.removeObservers(viewLifecycleOwner)
+            viewModel.filter = when (id) {
+                R.id.hide_completed_filter -> Filter.HIDE_COMPLETED
+                R.id.not_completed_first_filter -> Filter.NOT_COMPLETED_FIRST
+                else -> Filter.NONE
+            }
+            viewModel.pillsList.observe(viewLifecycleOwner, Observer {
+                adapter.submitList(it)
+            })
+        }
 
         return binding.root
     }
-
 
 }

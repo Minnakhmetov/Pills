@@ -1,13 +1,11 @@
 package com.example.pills.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface PillsDao {
-    @Query("select * from pillsdatabaseentity")
+    @Query("select * from pillsdatabaseentity order by LOWER(name) ASC")
     fun getPillsList(): LiveData<List<PillsDatabaseEntity>>
 
     @Query("select count(*) from pillsdatabaseentity where name=:name")
@@ -15,4 +13,10 @@ interface PillsDao {
 
     @Insert
     suspend fun insert(pill: PillsDatabaseEntity)
+
+    @Delete
+    suspend fun delete(pill: PillsDatabaseEntity)
+
+    @Update
+    suspend fun update(pill: PillsDatabaseEntity)
 }

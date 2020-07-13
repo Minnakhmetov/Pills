@@ -32,24 +32,21 @@
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/display_options"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/alphabetical_order_filter" />
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/not_completed_first_filter"
                         android:text="@string/not_completed_first_filter" />
 
                     <com.google.android.material.chip.Chip
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/hide_completed_filter"
                         android:text="@string/hide_not_completed_filter" />
 
                 </com.google.android.material.chip.ChipGroup>
