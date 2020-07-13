@@ -21,7 +21,7 @@
             android:ems="10"
             android:hint="@string/name_hint"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/required_doses_picker"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,24 +32,37 @@
             android:id="@+id/required_doses_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_normal"
             app:layout_constraintBottom_toTopOf="@+id/done_button"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/spacing_normal"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pillNameEditText" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <Button
             android:id="@+id/done_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/done_button"
             android:layout_marginTop="@dimen/spacing_normal"
+            android:enabled="false"
+            android:text="@string/done_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/required_doses_picker"
-            android:enabled="false" />
+            app:layout_constraintTop_toBottomOf="@+id/required_doses_picker" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:text="@string/required_dose_text"
+            app:layout_constraintBottom_toTopOf="@+id/required_doses_picker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pillNameEditText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Pills</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="alphabetical_order_filter">Alphabetical order</string>
     <string name="not_completed_first_filter">Not completed first</string>
     <string name="hide_not_completed_filter">Hide completed</string>
     <string name="name_hint">Name</string>
     <string name="done_button">done</string>
     <string name="duplicate_found_snackbar">Name is already taken</string>
+    <string name="doses_text" translatable="false">%d/%d</string>
+    <string name="required_dose_text">Required dose</string>
 </resources>

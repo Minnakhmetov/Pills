@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="28dp"
-            android:textSize="@dimen/pill_item_text_size"
+            style="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/minus_button"
             app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -32,17 +32,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/current_doses"
+            app:layout_constraintEnd_toStartOf="@+id/doses"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/pill_name"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_minus" />
 
         <TextView
-            android:id="@+id/current_doses"
+            android:id="@+id/doses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/pill_item_text_size"
+            style="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/plus_button"
             android:layout_margin="@dimen/spacing_small"
@@ -57,7 +57,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/delete_button"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/current_doses"
+            app:layout_constraintStart_toEndOf="@+id/doses"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_plus" />
 

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pills.models.Pill
 import com.example.pills.databinding.PillsListItemBinding
+import com.example.pills.models.getDoseTakenToday
 import timber.log.Timber
 
 class PillsListAdapter(private val clickListener: PillsListItemClickListener): ListAdapter<Pill, PillsListAdapter.PillViewHolder>(PillsDiffItemCallback) {
@@ -35,7 +36,11 @@ class PillsListAdapter(private val clickListener: PillsListItemClickListener): L
 
         fun bind(pill: Pill) {
             binding.pillName.text = pill.name
-            binding.currentDoses.text = pill.currentDoses.toString()
+            binding.doses.text = binding.doses.context.getString(
+                R.string.doses_text,
+                pill.getDoseTakenToday(),
+                pill.requiredDoses
+            )
             binding.deleteButton.setOnClickListener {
                 clickListener.onDeleteClicked(pill)
             }

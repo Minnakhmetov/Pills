@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.lifecycle.*
 import com.example.pills.database.getDatabase
 import com.example.pills.models.Pill
+import com.example.pills.models.getDoseTakenToday
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -30,10 +31,10 @@ class PillsListViewModel(application: Application): AndroidViewModel(application
             pillsList = when (value) {
                 Filter.NONE -> repository.getPillsList()
                 Filter.HIDE_COMPLETED -> Transformations.map(repository.getPillsList()) {
-                    it.filter { pill -> pill.currentDoses < pill.requiredDoses }
+                    it.filter { pill -> pill.getDoseTakenToday() < pill.requiredDoses }
                 }
                 Filter.NOT_COMPLETED_FIRST -> Transformations.map(repository.getPillsList()) {
-                    it.sortedBy { pill -> pill.requiredDoses == pill.currentDoses }
+                    it.sortedBy { pill -> pill.requiredDoses == pill.getDoseTakenToday() }
                 }
             }
         }
@@ -57,22 +58,22 @@ class PillsListViewModel(application: Application): AndroidViewModel(application
     }
 
     fun onDoseIncrease(pill: Pill) {
-        if (pill.currentDoses < pill.requiredDoses) {
+        if (pill.getDoseTakenToday() < pill.requiredDoses) {
             repository.update(Pill(
                 name = pill.name,
-                lastModified = pill.lastModified,
-                currentDoses = pill.currentDoses + 1,
+                lastModified = System.currentTimeMillis(),
+                currentDoses = pill.getDoseTakenToday() + 1,
                 requiredDoses = pill.requiredDoses
             ))
         }
     }
 
     fun onDoseDecrease(pill: Pill) {
-        if (pill.currentDoses > 0) {
+        if (pill.getDoseTakenToday() > 0) {
             repository.update(Pill(
                 name = pill.name,
-                lastModified = pill.lastModified,
-                currentDoses = pill.currentDoses - 1,
+                lastModified = System.currentTimeMillis(),
+                currentDoses = pill.getDoseTakenToday() - 1,
                 requiredDoses = pill.requiredDoses
             ))
         }
